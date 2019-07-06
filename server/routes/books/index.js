@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = () => {
   router.get('/', function(req, res, next){
-    return res.send('All books');
+    return res.render('books');
   });
 
   router.get('/:id', function(req, res, next){

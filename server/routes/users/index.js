@@ -3,7 +3,7 @@ const router = express.Router();
 
 module.exports = () => {
   router.get('/', function(req, res, next){
-    return res.send('All users');
+    return res.render('users');
   });
 
   router.get('/:id', function(req, res, next){

@@ -6,7 +6,7 @@ const loansRouter = require('./loans');
 
 module.exports = () => {
   router.get('/', function(req, res, next){
-    return res.send('Yay it is working');
+    return res.render('index');
   });
 
   router.use('/users', usersRouter());
