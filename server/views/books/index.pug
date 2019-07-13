@@ -1,25 +1,22 @@
 extends ../layout/index.pug
 block content
-  table.table
-    thead
-      tr
-        th(scope='col') #
-        th(scope='col') First
-        th(scope='col') Last
-        th(scope='col') Handle
-    tbody
-      tr
-        th(scope='row') 1
-        td Mark
-        td Otto
-        td @mdo
-      tr
-        th(scope='row') 2
-        td Jacob
-        td Thornton
-        td @fat
-      tr
-        th(scope='row') 3
-        td Larry
-        td the Bird
-        td @twitter
+  .container
+    h3.h3 All books
+    .row
+      each book in books
+        .col-md-3.col-sm-6
+          a(href=`/books/${book.isbn}`)
+            .product-grid
+              .product-image
+                img.pic-1(src=`${book.thumbnailUrl}`)
+              ul.rating
+                li.fa.fa-star
+                li.fa.fa-star
+                li.fa.fa-star
+                li.fa.fa-star
+                li.fa.fa-star
+              .product-content
+                h3.title=book.title
+                .price
+                  | $16.00
+                a.add-to-cart(href='') + Add To Cart

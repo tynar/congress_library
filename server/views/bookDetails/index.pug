@@ -1,0 +1,19 @@
+extends ../layout/index.pug
+block content
+  .container
+    .row
+      .row
+        .col-xs-4.item-photo
+          img(style='max-width:100%;', src=`${bookDetails.thumbnailUrl}`)
+        .col-xs-5(style='border:0px solid gray')
+          h3=bookDetails.title
+          h6.title-price
+            small Our Offer
+          h3(style='margin-top:0px;') $ 99
+        .col-xs-3
+          .btn
+            button.btn.btn-primary(type='button') Add to Cart!
+      .row
+        .col-xs-12
+          h6
+            small=bookDetails.longDescription

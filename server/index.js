@@ -11,11 +11,11 @@ app.set('views', path.join(__dirname, './views'));
 
 app.use(express.static('public'));
 
-app.use('/', routes());
-
 app.get('/favicon.ico', (req, res, next) => {
   return res.sendStatus(204);
 });
+
+app.use('/', routes());
 
 app.use((req, res, next) => {
   return next(createError(404, 'File not found.'));
