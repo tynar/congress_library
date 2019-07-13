@@ -1,0 +1,26 @@
+[
+  {
+    "username": "mark",
+    "name": "Mark Otto",
+    "password": "mark1",
+    "role": "admin"
+  },
+  {
+    "username": "jacob",
+    "name": "Jacob Thornton",
+    "password": "jacob1",
+    "role": "standard"
+  },
+  {
+    "username": "larry",
+    "name": "Larry Page",
+    "password": "larry1",
+    "role": "standard"
+  },
+  {
+    "username": "bill",
+    "name": "Bill Gates",
+    "password": "bill",
+    "role": "standard"
+  }
+]
