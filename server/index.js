@@ -1,6 +1,7 @@
 const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
+const bodyParser = require('body-parser');
 const routes = require('./routes/index.js');
 const app = express();
 const port = 3000;
@@ -10,6 +11,8 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './views'));
 
 app.use(express.static('public'));
+
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.get('/favicon.ico', (req, res, next) => {
   return res.sendStatus(204);
