@@ -10,6 +10,7 @@ class BookService {
 
   async getBookDetails(isbn) {
     const allBookData = await this.getData();
+
     const bookDetails = allBookData.find((book) =>{
       return book.isbn === isbn;
     });
@@ -18,9 +19,9 @@ class BookService {
   }
 
   async getBooks() {
-    const data = await this.getData();
+    const booksArray = await this.getData();
 
-    return data.map((book) => {
+    return booksArray.map((book) => {
       return {isbn: book.isbn, title: book.title, thumbnailUrl: book.thumbnailUrl};
     });
   }
