@@ -1,0 +1,17 @@
+extends layout/index.pug
+block content
+  // searchbar
+  header.masthead.text-white.text-center
+    .overlay
+    .container
+      .row
+        .col-xl-9.mx-auto
+          h1.mb-5 Congress library - Find whatever book you want
+        .col-md-10.col-lg-8.col-xl-7.mx-auto
+          form
+            .form-row
+              .col-12.col-md-9.mb-2.mb-md-0
+                input.form-control.form-control-lg(type='text', placeholder='Search books...')
+              .col-12.col-md-3
+                button.btn.btn-block.btn-lg.btn-primary(type='submit') Search!
+  // Icons Grid
