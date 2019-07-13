@@ -1,0 +1,17 @@
+extends ../layout/index.pug
+block content
+  | &nbsp; Loans page
+  table.table
+    thead
+      tr
+        th(scope='col') User
+        th(scope='col') Book
+        th(scope='col') Start Date
+        th(scope='col') End Date
+    tbody
+      each loan in loans
+        tr
+          th(scope='row')=loan.user
+          td=loan.book
+          td=loan.startDate
+          td=loan.endDate
