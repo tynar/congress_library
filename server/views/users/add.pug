@@ -1,5 +1,11 @@
 extends ../layout/index.pug
 block content
+  if addResult.success
+    .alert.alert-success
+      | Sucessfully added!
+  else if addResult.error
+    .alert.alert-danger
+      | Something is wrong! Please fill all fields.
   form(action='/users', method='POST')
     .form-row
       .form-group.col-md-6
@@ -18,12 +24,7 @@ block content
       .form-group.col-md-6
         label(for='inputCity') City
         input#inputCity.form-control(type='text', name='uaCity')
-      .form-group.col-md-4
-        label(for='inputState') State
-        select#inputState.form-control
-          option(selected='', name='uaState') Choose...
-          option ...
       .form-group.col-md-2
         label(for='inputZip') Zip
         input#inputZip.form-control(type='text', name='uaZip')
-    button.btn.btn-primary(type='submit') Sign in
+    button.btn.btn-primary(type='submit') Save new user

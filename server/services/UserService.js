@@ -9,10 +9,21 @@ class UserService {
     this.dataFile = dataFile;
   }
 
-  async addUser(user) {
-    // const allUsers = this.getAllUsers();
-    // allUsers.unshift({name, email, address});
-    // return writeFile(this.dataFile, JSON.stringify(allUsers));
+  async addUser(newUser) {
+
+    const usersArray = await this.getData();
+
+    usersArray.unshift({
+      name: newUser.email,
+      email: newUser.email,
+      address: {
+        city: newUser.city,
+        zipcode: newUser.zip,
+      },
+      website: 'NewUserWithoutWeb'
+    });
+
+    await writeFile(this.dataFile, JSON.stringify(usersArray));
   }
 
   async getAllUsers() {
