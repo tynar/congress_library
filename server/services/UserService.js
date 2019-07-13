@@ -2,6 +2,7 @@ const fs = require('fs');
 const util = require('util');
 
 const writeFile = util.promisify(fs.writeFile);
+const readFile = util.promisify(fs.readFile);
 
 class UserService {
   constructor(dataFile) {
@@ -14,6 +15,16 @@ class UserService {
     // return writeFile(this.dataFile, JSON.stringify(allUsers));
   }
 
-  //just for testing
+  async getAllUsers() {
+    const allUsersArray = await this.getData();
+    return allUsersArray;
+  }
 
+  async getData() {
+    const data = await readFile(this.dataFile, 'utf8');
+    if (!data) return [];
+    return JSON.parse(data);
+  }
 }
+
+module.exports = UserService;

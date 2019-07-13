@@ -1,9 +1,17 @@
 const express = require('express');
 const router = express.Router();
 
-module.exports = () => {
-  router.get('/', function(req, res, next){
-    return res.render('users');
+module.exports = (param) => {
+
+  const userService = param;
+
+  router.get('/', async function(req, res, next){
+
+    const allUsers = await userService.getAllUsers();
+
+    return res.render('users', {
+      users: allUsers
+    });
   });
 
   router.get('/add', (req, res, next) => {

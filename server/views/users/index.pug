@@ -13,79 +13,34 @@ block content
                     th
                       span User
                     th
-                      span Created
+                      span City
                     th.text-center
-                      span Status
+                      span Web Site
                     th
                       span Email
                     th  
                 tbody
-                  tr
-                    td
-                      img(src='https://bootdey.com/img/Content/user_1.jpg', alt='')
-                      a.user-link(href='#') Full name 1
-                      span.user-subhead Member
-                    td 2013/08/12
-                    td.text-center
-                      span.label.label-default pending
-                    td
-                      a(href='#') marlon@brando.com
-                    td(style='width: 20%;')
-                      a.table-link(href='#')
-                        span.fa-stack
-                          i.fa.fa-square.fa-stack-2x
-                          i.fa.fa-search-plus.fa-stack-1x.fa-inverse
-                      a.table-link(href='#')
-                        span.fa-stack
-                          i.fa.fa-square.fa-stack-2x
-                          i.fa.fa-pencil.fa-stack-1x.fa-inverse
-                      a.table-link.danger(href='#')
-                        span.fa-stack
-                          i.fa.fa-square.fa-stack-2x
-                          i.fa.fa-trash-o.fa-stack-1x.fa-inverse
-                  tr
-                    td
-                      img(src='https://bootdey.com/img/Content/user_3.jpg', alt='')
-                      a.user-link(href='#') Full name 2
-                      span.user-subhead Admin
-                    td 2013/08/12
-                    td.text-center
-                      span.label.label-success Active
-                    td
-                      a(href='#') marlon@brando.com
-                    td(style='width: 20%;')
-                      a.table-link(href='#')
-                        span.fa-stack
-                          i.fa.fa-square.fa-stack-2x
-                          i.fa.fa-search-plus.fa-stack-1x.fa-inverse
-                      a.table-link(href='#')
-                        span.fa-stack
-                          i.fa.fa-square.fa-stack-2x
-                          i.fa.fa-pencil.fa-stack-1x.fa-inverse
-                      a.table-link.danger(href='#')
-                        span.fa-stack
-                          i.fa.fa-square.fa-stack-2x
-                          i.fa.fa-trash-o.fa-stack-1x.fa-inverse
-                  tr
-                    td
-                      img(src='https://bootdey.com/img/Content/user_2.jpg', alt='')
-                      a.user-link(href='#') Full name 3
-                      span.user-subhead Member
-                    td 2013/08/12
-                    td.text-center
-                      span.label.label-danger inactive
-                    td
-                      a(href='#') marlon@brando.com
-                    td(style='width: 20%;')
-                      a.table-link(href='#')
-                        span.fa-stack
-                          i.fa.fa-square.fa-stack-2x
-                          i.fa.fa-search-plus.fa-stack-1x.fa-inverse
-                      a.table-link(href='#')
-                        span.fa-stack
-                          i.fa.fa-square.fa-stack-2x
-                          i.fa.fa-pencil.fa-stack-1x.fa-inverse
-                      a.table-link.danger(href='#')
-                        span.fa-stack
-                          i.fa.fa-square.fa-stack-2x
-                          i.fa.fa-trash-o.fa-stack-1x.fa-inverse
+                  each user in users
+                    tr
+                      td
+                        img(src='https://bootdey.com/img/Content/user_1.jpg', alt='')
+                        a.user-link(href='#')=user.name
+                        span.user-subhead Member
+                      td=user.address.city
+                      td.text-center
+                        span.label.label-default=user.website
+                      td
+                        a(href='#')=user.email
+                      td(style='width: 20%;')
+                        a.table-link(href='#')
+                          span.fa-stack
+                            i.fa.fa-square.fa-stack-2x
+                            i.fa.fa-search-plus.fa-stack-1x.fa-inverse
+                        a.table-link(href='#')
+                          span.fa-stack
+                            i.fa.fa-square.fa-stack-2x
+                            i.fa.fa-pencil.fa-stack-1x.fa-inverse
+                        a.table-link.danger(href='#')
+                          span.fa-stack
+                            i.fa.fa-square.fa-stack-2x
+                            i.fa.fa-trash-o.fa-stack-1x.fa-inverse
