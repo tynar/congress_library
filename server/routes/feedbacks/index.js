@@ -37,9 +37,9 @@ module.exports = (param) => {
   router.post('/', async (req, res, next) => {
 
     //Validate
-    const email = req.body.uaEmail.trim();
-    const name = req.body.uaName.trim();
-    const message = req.body.uaMessage.trim();
+    const email = req.body.faEmail.trim();
+    const name = req.body.faName.trim();
+    const message = req.body.faMessage.trim();
    
     if (!email || !name || !message ) return res.redirect('/feedbacks/add?added=false');
 
