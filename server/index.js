@@ -28,11 +28,10 @@ app.use((err, req, res, next) => {
   const status = err.status || 500;
   res.locals.status = status;
   res.status(status);
-  res.locals.message = 'this is my dummy test' + status.toString() + ' ' + err.message;
+  res.locals.message = status.toString() + ' ' + err.message;
   return res.render('error');
 });
 
 app.listen(port, function(){
-  console.log('Your views folder path is:' + path.join(__dirname, './views'));
   console.log('Web server started on port ' + port);
 });
