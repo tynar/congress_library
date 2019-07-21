@@ -17,9 +17,15 @@ block content
                     th(scope='col') Name
                     th(scope='col') Email
                     th(scope='col') Message
+                    th Action
                 tbody
                   each feedback in feedbacks
                     tr
                       th(scope='row')=feedback.name
                       td=feedback.email
                       td=feedback.message
+                      td
+                        a.table-link.danger(href='#', name='btnDeleteFeedback', data-id=`${feedback.id}`)
+                          span.fa-stack
+                            i.fa.fa-square.fa-stack-2x
+                            i.fa.fa-trash-o.fa-stack-1x.fa-inverse

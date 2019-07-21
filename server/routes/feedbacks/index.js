@@ -52,5 +52,9 @@ module.exports = (param) => {
     return res.redirect('/feedbacks?added=true');
   });
 
+  router.delete('/', (req, res, next) => {
+    return res.json({deleted: true, message: 'Successfully deleted'});
+  });
+
   return router;
 }
