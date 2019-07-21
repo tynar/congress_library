@@ -54,11 +54,23 @@ module.exports = (param) => {
       return res.redirect('/feedbacks/add');
     }
 
-    await feedbackService.addFeedback({
-      email: email,
-      name: name,
-      message: message
-    });
+    try{
+      await feedbackService.addFeedback({
+        email: email,
+        name: name,
+        message: message
+      });
+    }
+    catch(err){
+      msg = {
+        success: false,
+        error: true,
+        message: err
+      };
+
+      req.flash('flash', msg);
+      return res.redirect('/feedbacks/add');
+    }
 
     var msg = {
       success: true,
@@ -136,12 +148,24 @@ module.exports = (param) => {
       return res.redirect(`/feedbacks/update/${id}`);
     }
 
-    await feedbackService.updateFeedback({
-      id: id,
-      email: email,
-      name: name,
-      message: message
-    });
+    try{
+      await feedbackService.updateFeedback({
+        id: id,
+        email: email,
+        name: name,
+        message: message
+      });
+    }
+    catch(err){
+      msg = {
+        success: false,
+        error: true,
+        message: err
+      };
+
+      req.flash('flash', msg);
+      return res.redirect(`/feedbacks/update/${id}`);
+    }
 
     req.flash('flash', msg);
     return res.redirect('/feedbacks');
