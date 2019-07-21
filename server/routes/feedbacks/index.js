@@ -20,14 +20,12 @@ module.exports = (param) => {
   });
 
   router.get('/add', (req, res, next) => {
-    const added = req.query.added
-    const addResult = {
-      success: added === 'true',
-      error: added ==='false'
-    }
+    var msg = req.flash('flash') || {};
 
     return res.render('feedbacks/add', {
-      addResult: addResult
+      success: msg.success,
+      error: msg.error,
+      message: msg.message
     });
   });
 
