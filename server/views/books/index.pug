@@ -6,6 +6,7 @@ block content
       each book in books
         .col-md-3.col-sm-6
           a(href=`/books/${book.id}`)
+            h3=book.author
             .product-grid
               .product-image
                 img.pic-1(src=`${book.thumbnailUrl}`)

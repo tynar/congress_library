@@ -22,7 +22,7 @@ class BookService {
     const booksArray = await this.getData();
 
     return booksArray.map((book) => {
-      return {id: book.BookID, title: book.BookTitle, thumbnailUrl: book.ThumbnailUrl};
+      return {id: book.BookID, title: book.BookTitle, thumbnailUrl: book.ThumbnailUrl, author: book.AuthorName};
     });
   }
 

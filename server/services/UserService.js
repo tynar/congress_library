@@ -42,7 +42,7 @@ class UserService {
 
     const rows = await dbQuery(query);
     const data = JSON.parse(JSON.stringify(rows));
-    console.log(`Fetched ${data.length} rows from DB.`);
+    console.log(`Fetched ${data.length} users data from DB.`);
     return data;
   }
 }
