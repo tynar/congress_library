@@ -1,0 +1,25 @@
+extends ../layout/index.pug
+block content
+  a.btn.btn-info(href='/feedbacks/add') Add new Feedback
+  hr
+  .container.bootstrap.snippet
+    .row
+      if addResult.success
+        .alert.alert-success
+          | Sucessfully added!
+      .col-lg-12
+        .main-box.no-header.clearfix
+          .main-box-body.clearfix
+            .table-responsive
+              table.table.user-list
+                thead
+                  tr
+                    th(scope='col') Name
+                    th(scope='col') Email
+                    th(scope='col') Message
+                tbody
+                  each feedback in feedbacks
+                    tr
+                      th(scope='row')=feedback.name
+                      td=feedback.email
+                      td=feedback.message
