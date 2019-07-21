@@ -28,9 +28,14 @@ block content
                       td=feedback.email
                       td=feedback.message
                       td
-                        form(action=`/feedbacks/delete`, method='post')
-                          input(type='hidden', value=`${feedback.id}`, name='id')
-                          button.unstyled-button(type='submit')
+                        div
+                          form(action=`/feedbacks/delete`, method='post')
+                            input(type='hidden', value=`${feedback.id}`, name='id')
+                            button.unstyled-button(type='submit')
+                              span.fa-stack
+                                i.fa.fa-square.fa-stack-2x
+                                i.fa.fa-trash-o.fa-stack-1x.fa-inverse(style="color:red")
+                          a.table-link.danger(href=`/feedbacks/update/${feedback.id}`)
                             span.fa-stack
                               i.fa.fa-square.fa-stack-2x
-                              i.fa.fa-trash-o.fa-stack-1x.fa-inverse(style="color:red")
+                              i.fa.fa-pencil.fa-stack-1x.fa-inverse(style="color:red")

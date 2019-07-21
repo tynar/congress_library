@@ -22,6 +22,18 @@ class FeedbackService {
     await writeFile(this.dataFile, JSON.stringify(feedbacksArray));
   }
 
+  async getFeedback(id) {
+    const allFeedbacksArray = await this.getAllFeedbacks();
+    const feedback = allFeedbacksArray.find((f) =>{
+      return f.id == id;
+    });
+    return feedback;
+  }
+
+  async updateFeedback(updatedFeedback){
+    /**************************IMPLEMENT HERE */
+  }
+
   async getAllFeedbacks() {
     const allFeedbacksArray = await this.getData();
     return allFeedbacksArray;

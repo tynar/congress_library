@@ -97,5 +97,56 @@ module.exports = (param) => {
 
   } );
 
+  router.get('/update/:id', async (req, res, next) =>{
+
+    var feedback = await feedbackService.getFeedback(req.params.id);
+
+    var msg = req.flash('flash') || {};
+
+    return res.render('feedbacks/update', {
+      feedback,
+      success: msg.success,
+      error: msg.error,
+      message: msg.message
+    });
+  });
+
+  router.post('/update', async (req, res, next)=>{
+    //Validate
+    const id = req.body.faId;
+    const email = req.body.faEmail.trim();
+    const name = req.body.faName.trim();
+    const message = req.body.faMessage.trim();
+   
+    var msg = {
+      success: true,
+      error: false,
+      message: 'Successfully updated.'
+    };
+
+    if (!id || !email || !name || !message ) 
+    {
+      msg = {
+        success: false,
+        error: true,
+        message: 'Please fill email, name and message fields.'
+      };
+
+      req.flash('flash', msg);
+      return res.redirect(`/feedbacks/update/${id}`);
+    }
+
+    await feedbackService.updateFeedback({
+      id: id,
+      email: email,
+      name: name,
+      message: message
+    });
+
+    req.flash('flash', msg);
+    return res.redirect('/feedbacks');
+
+  });
+
   return router;
 }
