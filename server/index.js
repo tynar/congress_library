@@ -2,11 +2,18 @@ const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const flash = require('req-flash');
 const routes = require('./routes/index.js');
 const app = express();
 const port = 3000;
 
 app.locals.pretty = true;
+app.use(cookieParser());
+app.use(session({ secret: '123' }));
+app.use(flash());
+
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './views'));
 

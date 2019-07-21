@@ -4,9 +4,12 @@ block content
   hr
   .container.bootstrap.snippet
     .row
-      if addResult.success
-        .alert.alert-success
-          | Sucessfully added!
+      if success
+        .alert.alert-success(role='alert')
+          =message
+      else if error
+        .alert.alert-danger(role='alert')
+          =message
       .col-lg-12
         .main-box.no-header.clearfix
           .main-box-body.clearfix
@@ -25,7 +28,9 @@ block content
                       td=feedback.email
                       td=feedback.message
                       td
-                        a.table-link.danger(href='#', name='btnDeleteFeedback', data-id=`${feedback.id}`)
-                          span.fa-stack
-                            i.fa.fa-square.fa-stack-2x
-                            i.fa.fa-trash-o.fa-stack-1x.fa-inverse
+                        form(action=`/feedbacks/delete`, method='post')
+                          input(type='hidden', value=`${feedback.id}`, name='id')
+                          button.unstyled-button(type='submit')
+                            span.fa-stack
+                              i.fa.fa-square.fa-stack-2x
+                              i.fa.fa-trash-o.fa-stack-1x.fa-inverse(style="color:red")

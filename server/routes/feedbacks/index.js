@@ -9,16 +9,13 @@ module.exports = (param) => {
 
     const allFeedbacks = await feedbackService.getAllFeedbacks();
 
-    const added = req.query.added
-    const addResult = {
-      success: added === 'true',
-      error: added ==='false'
-    }
-
+    var msg = req.flash('flash') || {};
 
     return res.render('feedbacks', {
       feedbacks: allFeedbacks,
-      addResult: addResult
+      success: msg.success,
+      error: msg.error,
+      message: msg.message
     });
   });
 
@@ -41,7 +38,23 @@ module.exports = (param) => {
     const name = req.body.faName.trim();
     const message = req.body.faMessage.trim();
    
-    if (!email || !name || !message ) return res.redirect('/feedbacks/add?added=false');
+    var msg = {
+      success: true,
+      error: false,
+      message: 'Successfully added.'
+    };
+
+    if (!email || !name || !message ) 
+    {
+      msg = {
+        success: false,
+        error: true,
+        message: 'Please fill email, name and message fields.'
+      };
+
+      req.flash('flash', msg);
+      return res.redirect('/feedbacks/add');
+    }
 
     await feedbackService.addFeedback({
       email: email,
@@ -49,12 +62,42 @@ module.exports = (param) => {
       message: message
     });
 
-    return res.redirect('/feedbacks?added=true');
+    var msg = {
+      success: true,
+      error: false,
+      message: 'Successfully added.'
+    };
+
+    req.flash('flash', msg);
+    return res.redirect('/feedbacks');
   });
 
-  router.delete('/', (req, res, next) => {
-    return res.json({deleted: true, message: 'Successfully deleted'});
-  });
+  router.post('/delete', async (req, res, next) =>{
+    const id = req.body.id;
+    
+    /* *****************************IMPLEMENT HERE*********************************/
+
+    var msg = {
+      success: true,
+      error: false,
+      message: 'Successfully deleted.'
+    };
+
+    if (id == 'undefined') {
+      var msg = {
+        success: false,
+        error: true,
+        message: 'ID was not provided'
+      };
+
+      req.flash('flash', msg);
+      return res.redirect('/feedbacks');
+    }
+
+    req.flash('flash', msg);
+    return res.redirect('/feedbacks');
+
+  } );
 
   return router;
 }

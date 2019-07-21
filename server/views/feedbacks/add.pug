@@ -1,11 +1,11 @@
 extends ../layout/index.pug
 block content
-  if addResult.success
+  if success
     .alert.alert-success
-      | Sucessfully added!
-  else if addResult.error
+      =message
+  else if error
     .alert.alert-danger
-      | Something is wrong! Please fill all fields.
+      =message
   form(action='/feedbacks', method='POST')
     .form-row
     .form-group
