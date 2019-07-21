@@ -5,7 +5,7 @@ block content
     .row
       each book in books
         .col-md-3.col-sm-6
-          a(href=`/books/${book.isbn}`)
+          a(href=`/books/${book.id}`)
             .product-grid
               .product-image
                 img.pic-1(src=`${book.thumbnailUrl}`)

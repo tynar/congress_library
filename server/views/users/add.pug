@@ -5,7 +5,7 @@ block content
       | Sucessfully added!
   else if addResult.error
     .alert.alert-danger
-      | Something is wrong! Please fill all fields.
+      =addResult.message
   form(action='/users', method='POST')
     .form-row
       .form-group.col-md-6

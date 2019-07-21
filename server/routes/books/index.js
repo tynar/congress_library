@@ -14,9 +14,9 @@ module.exports = (param) => {
     });
   });
 
-  router.get('/:isbn', async function(req, res, next){
+  router.get('/:id', async function(req, res, next){
 
-    const bookDetails = await bookService.getBookDetails(req.params.isbn);
+    const bookDetails = await bookService.getBookDetails(req.params.id);
 
     return res.render('bookDetails', {
       bookDetails: bookDetails

@@ -25,7 +25,8 @@ module.exports = (param) => {
     const added = req.query.added
     const addResult = {
       success: added === 'true',
-      error: added ==='false'
+      error: added ==='false',
+      message: req.query.message
     }
 
     return res.render('users/add', {
@@ -45,14 +46,18 @@ module.exports = (param) => {
 
     if (!email || !password ) return res.redirect('/users/add?added=false');
 
-    await userService.addUser({
-      email: email,
-      password,
-      address2,
-      address,
-      city,
-      zip
-    });
+    try {
+      await userService.addUser({
+        email: email,
+        password,
+        address2,
+        address,
+        city,
+        zip
+      });
+    } catch (error){
+      return res.redirect(`/users/add?added=false&message=${error}`)
+    }
 
     return res.redirect('/users?added=true');
   });

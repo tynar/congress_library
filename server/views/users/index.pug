@@ -18,8 +18,6 @@ block content
                       span User
                     th
                       span City
-                    th.text-center
-                      span Web Site
                     th
                       span Email
                     th  
@@ -30,9 +28,7 @@ block content
                         img(src='https://bootdey.com/img/Content/user_1.jpg', alt='')
                         a.user-link(href=`/users/${user.id}`)=user.name
                         span.user-subhead Member
-                      td=user.address.city
-                      td.text-center
-                        span.label.label-default=user.website
+                      td=user.address
                       td
                         a(href=`mailto:${user.email}`)=user.email
                       td(style='width: 20%;')

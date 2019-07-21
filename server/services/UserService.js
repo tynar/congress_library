@@ -1,8 +1,10 @@
-const fs = require('fs');
+var connection = require('../lib/db');
 const util = require('util');
 
-const writeFile = util.promisify(fs.writeFile);
-const readFile = util.promisify(fs.readFile);
+const dbQuery = util.promisify(connection.query).bind(connection);
+
+//const writeFile = util.promisify(fs.writeFile);
+//const readFile = util.promisify(fs.readFile);
 
 class UserService {
   constructor(dataFile) {
@@ -10,31 +12,38 @@ class UserService {
   }
 
   async addUser(newUser) {
+    var existingUser = await this.getUser(newUser.email);
+    if (existingUser){
+      throw Error('User already exists');
+    }
 
-    const usersArray = await this.getData();
+    const query = `insert into users(UserName, Address, Phone, Email) values ('${newUser.email}', '${newUser.city}', '', '${newUser.email}');`
+    await dbQuery(query);
+  }
 
-    usersArray.unshift({
-      name: newUser.email,
-      email: newUser.email,
-      address: {
-        city: newUser.city,
-        zipcode: newUser.zip,
-      },
-      website: 'NewUserWithoutWeb'
-    });
+  async getUser(email) {
+    const query = `select * from users where email = '${email}'`;
 
-    await writeFile(this.dataFile, JSON.stringify(usersArray));
+    const rows = await dbQuery(query);
+    const data = rows[0];
+    return data;
   }
 
   async getAllUsers() {
     const allUsersArray = await this.getData();
-    return allUsersArray;
+    return allUsersArray.map((user) => {
+      return {id: user.UserID, name: user.UserName, email: user.Email, address: user.Address};
+    });
   }
 
   async getData() {
-    const data = await readFile(this.dataFile, 'utf8');
-    if (!data) return [];
-    return JSON.parse(data);
+
+    const query = `select * from users`;
+
+    const rows = await dbQuery(query);
+    const data = JSON.parse(JSON.stringify(rows));
+    console.log(`Fetched ${data.length} rows from DB.`);
+    return data;
   }
 }
 
