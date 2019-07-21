@@ -14,9 +14,9 @@ const feedbacksRouter = require('./feedbacks');
 
 
 module.exports = () => {
-  const bookService = new BookService(path.join(__dirname, '../data/books.json'));
-  const userService = new UserService(path.join(__dirname, '../data/users.json'));
-  const loanService = new LoanService(path.join(__dirname, '../data/loans.json'));
+  const bookService = new BookService();
+  const userService = new UserService();
+  const loanService = new LoanService();
   const feedbackService = new FeedbackService(path.join(__dirname, '../data/feedbacks.json'));
 
 

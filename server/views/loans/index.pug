@@ -7,11 +7,13 @@ block content
         th(scope='col') User
         th(scope='col') Book
         th(scope='col') Start Date
-        th(scope='col') End Date
+        th(scope='col') Due Date
+        th(scope='col') Fine Amount
     tbody
       each loan in loans
         tr
-          th(scope='row')=loan.user
-          td=loan.book
-          td=loan.startDate
-          td=loan.endDate
+          th(scope='row')=loan.UserName
+          td=loan.BookTitle
+          td=loan.IssuedDate
+          td=loan.DueDate
+          td=loan.FineAmount

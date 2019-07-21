@@ -3,13 +3,7 @@ const util = require('util');
 
 const dbQuery = util.promisify(connection.query).bind(connection);
 
-//const writeFile = util.promisify(fs.writeFile);
-//const readFile = util.promisify(fs.readFile);
-
 class UserService {
-  constructor(dataFile) {
-    this.dataFile = dataFile;
-  }
 
   async addUser(newUser) {
     var existingUser = await this.getUser(newUser.email);

@@ -4,10 +4,6 @@ const util = require('util');
 const dbRead = util.promisify(connection.query).bind(connection);
 
 class BookService {
-  constructor(dataFile) {
-    this.dataFile = dataFile;
-  }
-
   async getBookDetails(id) {
     const allBookData = await this.getBooks();
 

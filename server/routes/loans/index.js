@@ -7,11 +7,16 @@ module.exports = (param) => {
 
   router.get('/', async function(req, res, next){
 
-    const allLoans = await loanService.getAllLoans();
+    try{
+      const allLoans = await loanService.getAllLoans();
 
-    return res.render('loans', {
-      loans: allLoans
-    });
+      return res.render('loans', {
+        loans: allLoans
+      });
+  
+    } catch(error){
+      console.log(error);
+    }
   });
 
   router.get('/:id', function(req, res, next){
